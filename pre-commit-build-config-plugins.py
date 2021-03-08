@@ -259,11 +259,6 @@ for file_name in file_names_list:
     # if it did add to the commit
     # Also if one file is added then add the other.
     changedFiles = [item.a_path for item in index.diff(None)]
-    if plugins_file_path in changedFiles:
+    if plugins_file_path in changedFiles or main_file_path in changedFiles:
         index.add(plugins_file_path)
-
-        if main_file_path in changedFiles:
-            index.add(main_file_path)
-
-    elif main_file_path in changedFiles:
         index.add(main_file_path)

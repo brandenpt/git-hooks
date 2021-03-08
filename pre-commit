@@ -3,7 +3,12 @@
 # https://www.gnu.org/software/bash/manual/bash.html#Modifying-Shell-Behavior
 
 wd=$(pwd)
+# Get the project absolute path
 projectdir=$(git rev-parse --show-toplevel || { >&2 echo "ERROR: Git repository directory not found in $wd"; exit 255; })
 
+# Change this path if you want your script in another location
+# < /dev/tty for the python to have input
 "$projectdir"/.git/hooks/pre-commit-settings-gradle.py < /dev/tty
 
+#clean the variables
+unset wd projectdir
