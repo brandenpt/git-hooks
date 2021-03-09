@@ -1,7 +1,5 @@
 # Branden Client git hooks
 
----
-
 ## About
 
 This git hook verifies if parts of two files are the same and if not then asks to overwrite the file
@@ -13,8 +11,6 @@ plugins and versions has the main project.
 
 This script detects, before commit, if the files are different and if they are then asks if you want overwrite them.
 If you cancel the commit is also canceled. If you continue then the files are overwritten and added to the commit.
-
----
 
 ## Usage
 
@@ -47,8 +43,6 @@ timeout: int = 5
 ```
 
 Then copy or hardlink all the scripts in the scripts directory to '.git/hooks/' and done.
-
----
 
 ## License
 
