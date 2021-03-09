@@ -14,7 +14,8 @@ from git import Repo
 from typing import NamedTuple, Set, Optional
 from pathlib import PurePath
 from hooksutils import eprint, input_with_timeout, TimeoutExpired
-from copyconfigargs import dir_overwrite, file_names_list, needles_dict, default_needle, timeout
+from copyconfigargs import dir_overwrite, file_names_list, \
+    needles_dict, default_needle, timeout
 
 # region Functions Definitions
 # -----------------------------------------------------------------------------
@@ -231,7 +232,7 @@ for file_name in file_names_list:
             sys.exit(103)
     else:
         if default_needle is None:
-            eprint("ERROR: default needle should not be None")
+            eprint("ERROR: there must be a default needle")
             sys.exit(103)
         if not default_needle.isascii():
             eprint("ERROR: default needle is made of non ASCII characters")
