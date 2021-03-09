@@ -1,4 +1,9 @@
 #!/bin/bash -e
+
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
 # The -e flag instructs the script to exit on error.
 # https://www.gnu.org/software/bash/manual/bash.html#Modifying-Shell-Behavior
 
@@ -8,7 +13,7 @@ projectdir=$(git rev-parse --show-toplevel || { >&2 echo "ERROR: Git repository 
 
 # Change this path if you want your script in another location
 # < /dev/tty for the python to have input
-"$projectdir"/.git/hooks/pre-commit-settings-gradle.py < /dev/tty
+"$projectdir"/.git/hooks/pre-commit-copy-config.py < /dev/tty
 
 #clean the variables
 unset wd projectdir

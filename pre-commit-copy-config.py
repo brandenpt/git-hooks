@@ -1,30 +1,20 @@
 #!/usr/bin/env python3
+
+#  This Source Code Form is subject to the terms of the Mozilla Public
+#  License, v. 2.0. If a copy of the MPL was not distributed with this
+#  file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+
 from __future__ import print_function
 import sys
 from subprocess import run
 import textwrap
 import os
 from git import Repo
-from typing import NamedTuple, Set, Optional, List, Dict
+from typing import NamedTuple, Set, Optional
 from pathlib import PurePath
 from hooksutils import eprint, input_with_timeout, TimeoutExpired
-
-# -----------------------------------------------------------------------------
-# SCRIPT ARGUMENTS
-# -----------------------------------------------------------------------------
-
-# Directory with the files to be overwritten
-dir_overwrite: str = "build-config-plugins"
-# Name of the files to be overwritten
-file_names_list: List[str] = ["settings.gradle.kts", "gradle.properties"]
-# Dictionary with the needles for each file -> file_name: needle
-# A needle should be in ascii and should not be made with only whitespaces
-needles_dict: Dict[str, str] = {}
-# If the needle_dict doesn't have the needle for the file then use this one:
-default_needle: str = "build-config-plugins-needle"
-# Timeout for the prompt
-timeout: int = 5
-
+from copyconfigargs import dir_overwrite, file_names_list, needles_dict, default_needle, timeout
 
 # region Functions Definitions
 # -----------------------------------------------------------------------------
