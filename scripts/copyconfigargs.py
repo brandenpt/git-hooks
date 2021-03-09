@@ -34,12 +34,17 @@ from typing import List, Dict
 
 # Directory with the files to be overwritten
 dir_overwrite: str = "build-config-plugins"
+
 # Name of the files to be overwritten
 file_names_list: List[str] = ["settings.gradle.kts", "gradle.properties"]
-# Dictionary with the needles for each file -> file_name: needle
+
+# Dictionary with the needles for each file:
+# needles_dict = { file_name: needle }
 # A needle should be in ascii and should not be made with only whitespaces
 needles_dict: Dict[str, str] = {}
+
 # If the needle_dict doesn't have the needle for the file then use this one:
 default_needle: str = "build-config-plugins-needle"
-# Timeout for the prompt
+
+# Timeout in seconds for the prompt, -1 to be unlimited and 0 to allways cancel
 timeout: int = 5
