@@ -1,4 +1,4 @@
-# Branden Client git hooks
+# Branden Client git hooks to copy files
 
 ## About
 
