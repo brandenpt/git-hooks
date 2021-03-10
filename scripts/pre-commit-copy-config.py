@@ -19,6 +19,7 @@ from hooksutils import eprint, input_with_timeout, TimeoutExpired
 from copyconfigargs import dir_overwrite, file_names_list, \
     needles_dict, default_needle, timeout
 
+
 # region Functions Definitions
 # -----------------------------------------------------------------------------
 # SCRIPT FUNCTION AND CLASS DEFINITIONS
@@ -137,7 +138,7 @@ def assert_overwrite(set_to_be_overwritten: Set[str],
             print()
         else:
             prompt = "Overwrite the {parent_path}/{file_name} file? " \
-                     "[y/N] ({timeout} seconds to respond) "\
+                     "[y/N] ({timeout} seconds to respond) " \
                 .format(parent_path=file_path.parent.name,
                         file_name=file_path.name,
                         timeout=timeout)
@@ -216,6 +217,9 @@ index = repo.index
 if len(list(index.diff("HEAD"))) < 1:
     sys.exit(0)
 
+#
+repo.close()
+
 for file_name in file_names_list:
     main_file_path = PurePath(project_path, file_name)
     plugins_file_path = PurePath(project_path, dir_overwrite,
@@ -251,7 +255,10 @@ for file_name in file_names_list:
     # Check if this script changed the files and
     # if it did add to the commit
     # Also if one file is added then add the other.
-    changedFiles = [item.a_path for item in index.diff(None)]
-    if plugins_file_path in changedFiles or main_file_path in changedFiles:
-        index.add(plugins_file_path)
-        index.add(main_file_path)
+    changedFiles = [item for item in index.diff(None)]
+
+    for f in changedFiles:
+        if str(plugins_file_path).endswith(str(f.a_path)) \
+                or str(main_file_path).endswith(str(f.a_path)):
+            index.add([f.a_path])
+
