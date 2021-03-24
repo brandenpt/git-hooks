@@ -10,7 +10,7 @@ like this [example](https://github.com/cortinico/kotlin-gradle-plugin-template),
 plugins and versions has the main project.
 
 This script detects, before commit, if the files are different and if they are then asks if you want overwrite them.
-If you cancel the commit is also canceled. If you continue then the files are overwritten and added to the commit.
+If you cancel then the commit is also canceled. If you continue then the files are overwritten and added to the commit.
 
 ## Usage
 
